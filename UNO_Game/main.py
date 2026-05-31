@@ -1,11 +1,89 @@
-from card import Card
+import os
 
-card1 = Card("Red", 5)
-card2 = Card("Blue", 7)
-card3 = Card("Green", 2)
-card4 = Card("Yellow", 9)
+from deck import Deck
+from player import Player
 
-print(card1)
-print(card2)
-print(card3)
-print(card4)
+def clear_screen():
+    if os.name == "nt":
+        os.system("cls")
+    else:
+        os.system("clear")
+
+
+def print_cards_side_by_side(cards):
+    rendered_cards = []
+
+    for card in cards:
+        rendered_cards.append(str(card).split("\n"))
+
+    for line_number in range(7):
+        line = ""
+
+        for card_lines in rendered_cards:
+            line += card_lines[line_number] + "  "
+
+        print(line)
+
+
+def print_hand(player):
+    print(f"{player.name}'s hand:")
+
+    print_cards_side_by_side(player.hand)
+
+    for i in range(len(player.hand)):
+        print(f"     [{i}]     ", end="  ")
+
+    print()
+
+
+def get_card_choice(player):
+    while True:
+        try:
+            choice = int(input("Choose a card index: "))
+
+            if 0 <= choice < len(player.hand):
+                return choice
+            else:
+                print("That card index is not in your hand.")
+
+        except ValueError:
+            print("Please enter a valid number.")
+
+
+deck = Deck()
+player1 = Player("Player 1")
+
+for i in range(5):
+    player1.draw_card(deck)
+
+top_card = deck.draw()
+
+input("Press Enter to clear the screen and start your turn...")
+clear_screen()
+
+print("Top card:")
+print(top_card)
+
+print_hand(player1)
+
+choice = get_card_choice(player1)
+chosen_card = player1.hand[choice]
+
+print("You chose:")
+print(chosen_card)
+
+if chosen_card.can_play_on(top_card):
+
+    top_card = player1.play_card(choice)
+
+    print("New top card:")
+    print(top_card)
+
+else:
+    print("You cannot play this card.")
+    print("You need to draw a card.")
+
+    player1.draw_card(deck)
+
+    print("Your hand after drawing:")
+    print_hand(player1)
