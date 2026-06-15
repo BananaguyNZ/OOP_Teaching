@@ -27,7 +27,7 @@ def set_drive_power(left_power, right_power):
 def main():
     hub.imu.reset_heading(0)
 
-    set_drive_power(300,300)
+    set_drive_power(500,500)
     wait(1000)
 
     stop_drive()
