@@ -1,6 +1,6 @@
 import numpy as np
 
-def simulate_motor(Kp, Ki, Kd, target_position=100, total_time=5, dt=0.01):
+def simulate_motor(Kp, Ki, Kd, target_position=100, total_time=10, dt=0.01):
     time_list = []
     position_list = []
     speed_list = []
