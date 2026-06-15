@@ -21,8 +21,8 @@ def stop_drive():
     right_motor.stop()
 
 def set_drive_power(left_power, right_power):
-    left_motor.run(left_power)
-    right_motor.run(right_power)
+    left_motor.dc(left_power)
+    right_motor.dc(right_power)
 
 def main():
     hub.imu.reset_heading(0)
