@@ -22,7 +22,7 @@ def stop_drive():
 
 def set_drive_power(left_power, right_power):
     left_motor.dc(left_power)
-    right_motor.rundc(right_power)
+    right_motor.dc(right_power)
 
 
 def main():
