@@ -34,7 +34,7 @@ def main():
     wait(500)
 
     # set_drive_power(-30,30) # Left Turn hold position
-    # set_drive_power(0,30)
+    # set_drive_power(0,30) # Moving Left Turn
 
     attachment_c.run_angle(300,90,then=Stop.HOLD,wait=True)
     attachment_f.run_angle(300,90,then=Stop.HOLD,wait=True)
